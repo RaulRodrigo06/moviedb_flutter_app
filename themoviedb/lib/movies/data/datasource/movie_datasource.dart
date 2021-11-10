@@ -2,9 +2,9 @@ import 'package:themoviedb/core/network/api_manager.dart';
 import 'package:themoviedb/core/network/endpoint.dart';
 import 'package:themoviedb/core/network/get.dart';
 import 'package:themoviedb/core/response/api_result.dart';
-import 'package:themoviedb/movies/data/datasource/i_movie_db_datasource.dart';
+import 'package:themoviedb/movies/data/datasource/i_movie_datasource.dart';
 
-class MovieDbDatasource implements IMovieDbDatasource {
+class MovieDatasource implements IMovieDatasource {
   String _urlMoviesMostPopular({required int page}) {
     return 'https://api.themoviedb.org/3/movie/popular?api_key=8e1f3490365a847b0355d560842ce17e&language=en-US&page=$page';
   }
