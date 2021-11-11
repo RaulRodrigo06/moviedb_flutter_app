@@ -29,9 +29,9 @@ class CardMoviesWidget extends StatelessWidget {
           borderRadius: BorderRadius.circular(15),
           boxShadow: const [
             BoxShadow(
-              spreadRadius: 2,
-              blurRadius: 0,
-              color: Colors.black12,
+              spreadRadius: 7,
+              blurRadius: 8,
+              color: Colors.white,
             )
           ],
         ),

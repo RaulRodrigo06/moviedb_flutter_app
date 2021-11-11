@@ -6,9 +6,9 @@ abstract class Strings {
   static const standardErrorMessage =
       'Sorry we had an unexpected event, please try again later';
   static TextSpan titleAppBarHome() {
-    return const TextSpan(
+    return TextSpan(
         text: 'Hello, \n ',
-        style: TextStyle(
+        style: const TextStyle(
           fontSize: 12,
           color: Colors.black,
           fontWeight: FontWeight.normal,
@@ -18,11 +18,11 @@ abstract class Strings {
             text: 'VeryCreatives \n',
             style: TextStyle(
               fontSize: 20,
-              color: Colors.yellow,
+              color: Colors.yellowAccent[700],
               fontWeight: FontWeight.bold,
             ),
           ),
-          TextSpan(
+          const TextSpan(
             text: 'Check these movies out!',
             style: TextStyle(
               fontSize: 12,
