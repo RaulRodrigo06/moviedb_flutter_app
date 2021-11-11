@@ -1,6 +1,9 @@
 import 'package:flutter/material.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
+import 'package:themoviedb/core/app_strings.dart';
 import 'package:themoviedb/movies/presentation/cubit/movie_cubit.dart';
+import 'package:themoviedb/movies/presentation/widgets/app_bar_widget.dart';
+import 'package:themoviedb/movies/presentation/widgets/card_movies_widget.dart';
 
 class HomePage extends StatefulWidget {
   const HomePage({Key? key}) : super(key: key);
@@ -19,38 +22,31 @@ class _HomePageState extends State<HomePage> {
   @override
   Widget build(BuildContext context) {
     return Scaffold(
-      appBar: AppBar(
-        centerTitle: true,
-        title: const Text('Home Page'),
+      extendBodyBehindAppBar: true,
+      appBar: CustomAppBar(
+        title: Strings.titleAppBarHome(),
+        isDetailPage: false,
       ),
       body: BlocBuilder<MovieCubit, MovieState>(
         builder: (context, state) {
-          if (state is MovieLoadingState) {
-            return const CircularProgressIndicator();
-          } else if (state is MovieLoadedState) {
-            return ListView.builder(itemBuilder: (context, index) {
-              return Column(
-                children: [
-                  Text(state.movieListEntity.movieList[index].id.toString()),
-                  Text(state.movieListEntity.movieList[index].voteAverage
-                      .toString()),
-                  Text(state.movieListEntity.movieList[index].originalTitle ??
-                      'Dont have Original Title'),
-                  Text(state.movieListEntity.movieList[index].overview ??
-                      'Dont Have a Overview'),
-                  Text(state.movieListEntity.movieList[index].posterPath ??
-                      'No Pics'),
-                  Text(state.movieListEntity.movieList[index].releaseDate ??
-                      'TBD'),
-                ],
-              );
-            });
+          if (state is MovieLoadedState) {
+            return GridView.builder(
+                gridDelegate: const SliverGridDelegateWithFixedCrossAxisCount(
+                    crossAxisCount: 2, childAspectRatio: 0.5),
+                itemCount: state.movieListEntity.movieList.length,
+                itemBuilder: (context, index) {
+                  return CardMoviesWidget(
+                    movieEntity: state.movieListEntity.movieList[index],
+                  );
+                });
           } else if (state is MovieErrorState) {
             return Center(
               child: Text(state.message ?? 'sorry we found an error'),
             );
           } else {
-            return Container();
+            return const Center(
+              child: CircularProgressIndicator(),
+            );
           }
         },
       ),

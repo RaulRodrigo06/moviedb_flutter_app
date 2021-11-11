@@ -43,12 +43,12 @@ dependencies:
   equatable: ^2.0.3
   mocktail: ^0.1.4
   dartz: ^0.10.0
-  flutter_secure_storage: ^4.2.1
   pedantic: ^1.10.0
   build_runner: ^2.1.2
   mobx_codegen: ^2.0.3
   flutter_svg: ^0.22.0
   flutter_bloc: ^7.3.3
+  cached_network_image: ^3.1.0+1
 
 dev_dependencies:
   flutter_test:

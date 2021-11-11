@@ -6,7 +6,7 @@ class MovieModel extends MovieEntity {
     String? posterPath,
     String? overview,
     String? releaseDate,
-    String? originalTitle,
+    required String originalTitle,
     double? voteAverage,
   }) : super(
           id: id,

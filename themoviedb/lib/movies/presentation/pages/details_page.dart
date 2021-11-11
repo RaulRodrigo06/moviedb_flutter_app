@@ -5,6 +5,12 @@ class DetailsPage extends StatelessWidget {
 
   @override
   Widget build(BuildContext context) {
-    return Container();
+    return Scaffold(
+      appBar: AppBar(
+        centerTitle: true,
+        title: const Text('Home Page'),
+      ),
+      body: Container(),
+    );
   }
 }

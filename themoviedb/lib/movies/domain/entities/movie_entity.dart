@@ -1,21 +1,24 @@
 import 'package:equatable/equatable.dart';
+import 'package:flutter/cupertino.dart';
 
 class MovieEntity extends Equatable {
   const MovieEntity({
     required this.id,
-    this.originalTitle,
+    required this.originalTitle,
     this.overview,
     this.posterPath,
     this.releaseDate,
     this.voteAverage,
+    this.poster,
   });
 
   final String? posterPath;
   final String? overview;
   final String? releaseDate;
   final int id;
-  final String? originalTitle;
+  final String originalTitle;
   final double? voteAverage;
+  final Image? poster;
 
   @override
   List<dynamic> get props => [
@@ -25,5 +28,6 @@ class MovieEntity extends Equatable {
         id,
         originalTitle,
         voteAverage,
+        poster
       ];
 }

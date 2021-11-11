@@ -3,19 +3,17 @@ import 'package:flutter/material.dart';
 class ImageCardWidget extends StatelessWidget {
   const ImageCardWidget({
     Key? key,
-    this.imagem,
+    this.image,
   }) : super(
           key: key,
         );
-  final String? imagem;
+  final String? image;
 
   @override
   Widget build(BuildContext context) {
-    return Positioned.fill(
-      child: Image.network(
-        'https://image.tmdb.org/t/p/original$imagem',
-        fit: BoxFit.cover,
-      ),
+    return Image.network(
+      'https://image.tmdb.org/t/p/original$image',
+      fit: BoxFit.fill,
     );
   }
 }
