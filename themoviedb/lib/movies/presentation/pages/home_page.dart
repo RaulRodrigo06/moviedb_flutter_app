@@ -5,6 +5,7 @@ import 'package:themoviedb/movies/presentation/cubit/movie_cubit.dart';
 import 'package:themoviedb/movies/presentation/page_enum.dart';
 import 'package:themoviedb/movies/presentation/widgets/appbar_widget.dart';
 import 'package:themoviedb/movies/presentation/widgets/card_movies_widget.dart';
+import 'package:themoviedb/movies/presentation/widgets/home_page_appbar_action_widget.dart';
 
 class HomePage extends StatefulWidget {
   const HomePage({Key? key}) : super(key: key);
@@ -27,6 +28,7 @@ class _HomePageState extends State<HomePage> {
       appBar: CustomAppBar(
         title: Strings.titleAppBarHome(),
         pageEnum: PageEnum.isHomePage,
+        appBarAction: const HomePageAppBarActionWidget(),
       ),
       body: BlocBuilder<MovieCubit, MovieState>(
         builder: (context, state) {

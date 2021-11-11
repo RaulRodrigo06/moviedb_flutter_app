@@ -6,6 +6,7 @@ import 'package:themoviedb/movies/data/datasource/movie_datasource.dart';
 import 'package:themoviedb/movies/data/repository/movie_repository.dart';
 import 'package:themoviedb/movies/domain/repository/i_movie_repository.dart';
 import 'package:themoviedb/movies/domain/usecase/get_popular_movie_usecase.dart';
+import 'package:themoviedb/movies/presentation/cubit/favorite_movie_cubit.dart';
 import 'package:themoviedb/movies/presentation/cubit/movie_cubit.dart';
 
 final injector = GetIt.instance;
@@ -35,5 +36,8 @@ Future<void> init() async {
     () => MovieCubit(
       getPopularMovieUsecase: injector(),
     ),
+  );
+  injector.registerFactory(
+    () => FavoriteMovieCubit(),
   );
 }

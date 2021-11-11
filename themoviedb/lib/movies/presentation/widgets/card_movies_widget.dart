@@ -1,5 +1,8 @@
 import 'package:flutter/material.dart';
+import 'package:flutter_bloc/flutter_bloc.dart';
+import 'package:themoviedb/injection_container.dart';
 import 'package:themoviedb/movies/domain/entities/movie_entity.dart';
+import 'package:themoviedb/movies/presentation/cubit/favorite_movie_cubit.dart';
 import 'package:themoviedb/movies/presentation/pages/details_page.dart';
 import 'package:themoviedb/movies/presentation/widgets/image_card_widget.dart';
 import 'package:themoviedb/movies/presentation/widgets/score_widget.dart';
@@ -19,8 +22,11 @@ class CardMoviesWidget extends StatelessWidget {
         Navigator.push(
           context,
           MaterialPageRoute(
-            builder: (context) => DetailsPage(
-              movieEntity: movieEntity,
+            builder: (context) => BlocProvider<FavoriteMovieCubit>(
+              create: (_) => injector<FavoriteMovieCubit>(),
+              child: DetailsPage(
+                movieEntity: movieEntity,
+              ),
             ),
           ),
         );
