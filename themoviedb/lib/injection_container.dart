@@ -37,7 +37,7 @@ Future<void> init() async {
       getPopularMovieUsecase: injector(),
     ),
   );
-  injector.registerFactory(
+  injector.registerLazySingleton(
     () => FavoriteMovieCubit(),
   );
 }

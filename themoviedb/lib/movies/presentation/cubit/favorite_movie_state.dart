@@ -9,12 +9,14 @@ class FavoriteMovieInitialState extends FavoriteMovieState {
 }
 
 class FavoriteMovieLoadingState extends FavoriteMovieState {
+  FavoriteMovieLoadingState();
+
   @override
   List<Object?> get props => [];
 }
 
 class FavoriteMovieLoadedState extends FavoriteMovieState {
-  FavoriteMovieLoadedState(this.movieListEntity);
+  FavoriteMovieLoadedState({required this.movieListEntity});
   final List<MovieEntity> movieListEntity;
 
   @override

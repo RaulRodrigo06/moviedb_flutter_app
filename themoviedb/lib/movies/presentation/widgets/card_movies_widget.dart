@@ -32,20 +32,23 @@ class CardMoviesWidget extends StatelessWidget {
         );
       },
       child: Container(
-        height: 1000,
         decoration: BoxDecoration(
           borderRadius: BorderRadius.circular(15),
-          boxShadow: const [
+          boxShadow: [
             BoxShadow(
-              spreadRadius: 7,
-              blurRadius: 8,
-              color: Colors.white,
+              spreadRadius: 4,
+              blurRadius: 4,
+              color: Colors.transparent.withAlpha(10),
             )
           ],
         ),
         margin: const EdgeInsets.all(10),
-        child: ClipRRect(
-          borderRadius: BorderRadius.circular(8),
+        child: Card(
+          shape: RoundedRectangleBorder(
+            borderRadius: BorderRadius.circular(15.0),
+          ),
+          color: Colors.white,
+          elevation: 20,
           child: Column(
             children: <Widget>[
               TitleWidget(
@@ -54,8 +57,10 @@ class CardMoviesWidget extends StatelessWidget {
               ScoreWidget(
                 voteAvarage: movieEntity.voteAverage,
               ),
-              ImageCardWidget(
-                image: movieEntity.posterPath,
+              Expanded(
+                child: ImageCardWidget(
+                  image: movieEntity.posterPath,
+                ),
               ),
             ],
           ),

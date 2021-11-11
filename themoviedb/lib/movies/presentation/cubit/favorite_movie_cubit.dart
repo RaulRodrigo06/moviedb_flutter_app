@@ -9,6 +9,7 @@ class FavoriteMovieCubit extends Cubit<FavoriteMovieState> {
   FavoriteMovieCubit() : super(FavoriteMovieInitialState());
   List<MovieEntity> movieListEntity = [];
   Future<void> addFavoriteMovie(MovieEntity movieEntity) async {
+    emit(FavoriteMovieLoadingState());
     if (movieListEntity.contains(movieEntity)) {
       movieListEntity.remove(movieEntity);
     } else {
@@ -17,7 +18,7 @@ class FavoriteMovieCubit extends Cubit<FavoriteMovieState> {
 
     emit(
       FavoriteMovieLoadedState(
-        movieListEntity,
+        movieListEntity: movieListEntity,
       ),
     );
     emit(FavoriteMovieInitialState());

@@ -1,4 +1,5 @@
 import 'package:flutter/material.dart';
+import 'package:themoviedb/core/app_strings.dart';
 import 'package:themoviedb/movies/domain/entities/movie_entity.dart';
 import 'package:themoviedb/movies/presentation/page_enum.dart';
 import 'package:themoviedb/movies/presentation/widgets/appbar_widget.dart';
@@ -15,27 +16,44 @@ class DetailsPage extends StatelessWidget {
   Widget build(BuildContext context) {
     return Scaffold(
       appBar: CustomAppBar(
-        appBarAction: DetailPageAppBarActionWidget(movieEntity: movieEntity,),
+        appBarAction: DetailPageAppBarActionWidget(
+          movieEntity: movieEntity,
+        ),
         title: _appBarTitle(),
         pageEnum: PageEnum.isDetailPage,
       ),
-      body: Column(
-        children: [
-          ImageCardWidget(
-            image: movieEntity.posterPath,
-          ),
-          Padding(
-            padding: const EdgeInsets.all(8.0),
-            child: Text(
-              '${movieEntity.overview}',
-              style: const TextStyle(
-                fontSize: 12,
-                color: Colors.black,
-                fontWeight: FontWeight.normal,
+      body: SingleChildScrollView(
+        child: Column(
+          children: [
+            ImageCardWidget(
+              image: movieEntity.posterPath,
+            ),
+            const Padding(
+              padding: EdgeInsets.only(
+                top: 10,
+              ),
+              child: Text(
+                Strings.overview,
+                style: TextStyle(
+                  fontSize: 15,
+                  color: Colors.black,
+                  fontWeight: FontWeight.bold,
+                ),
               ),
             ),
-          ),
-        ],
+            Padding(
+              padding: const EdgeInsets.all(8.0),
+              child: Text(
+                '${movieEntity.overview}',
+                style: const TextStyle(
+                  fontSize: 12,
+                  color: Colors.black,
+                  fontWeight: FontWeight.normal,
+                ),
+              ),
+            ),
+          ],
+        ),
       ),
     );
   }
