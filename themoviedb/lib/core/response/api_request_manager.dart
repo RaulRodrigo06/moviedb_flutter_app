@@ -1,4 +1,5 @@
 import 'package:dio/dio.dart';
+import 'package:flutter/material.dart';
 import 'package:themoviedb/core/response/i_api_request_manager.dart';
 import 'package:themoviedb/core/response/states/api_result.dart';
 import 'package:themoviedb/core/response/states/erro.dart';
@@ -36,8 +37,8 @@ class ApiRequestManager implements IApiRequestManager, InterceptorsWrapper {
 
   @override
   void onError(DioError err, ErrorInterceptorHandler handler) {
-    print(err.message);
-    print(err.response);
+    debugPrint(err.message.toString());
+    debugPrint(err.response.toString());
     handler.next(err);
   }
 
@@ -49,11 +50,11 @@ class ApiRequestManager implements IApiRequestManager, InterceptorsWrapper {
 
   @override
   void onResponse(Response response, ResponseInterceptorHandler handler) {
-    print(response.realUri);
-    print('----------------------');
-    print(response.statusCode);
-    print('----------------------');
-    print(response.data);
+    debugPrint('${response.realUri}');
+    debugPrint('----------------------');
+    debugPrint('${response.statusCode}');
+    debugPrint('----------------------');
+    debugPrint(response.data.toString());
     handler.next(response);
   }
 }

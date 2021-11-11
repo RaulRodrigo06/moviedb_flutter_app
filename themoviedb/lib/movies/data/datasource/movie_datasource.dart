@@ -7,11 +7,11 @@ class MovieDatasource implements IMovieDatasource {
   final IApiRequestManager iApiRequestManager;
 
   String _urlMoviesMostPopular({required int page}) {
-    return 'https://api.themoviedb.org/3/movie/popular?api_key=8e1f3490365a847b0355d560842ce17e&language=en-US&page=$page';
+    return 'https://api.themoviedb.org/3/movie/popular?api_key=8d61230b01928fe55a53a48a41dc839b&language=en-US&page=$page';
   }
 
   String _urlMoviesByRate({required int page}) {
-    return 'https://api.themoviedb.org/3/movie/top_rated?api_key=8e1f3490365a847b0355d560842ce17e&language=en-US&page=$page';
+    return 'https://api.themoviedb.org/3/movie/top_rated?api_key=8d61230b01928fe55a53a48a41dc839b&language=en-US&page=$page';
   }
 
   @override
