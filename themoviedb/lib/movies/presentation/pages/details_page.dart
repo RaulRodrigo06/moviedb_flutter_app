@@ -26,8 +26,12 @@ class DetailsPage extends StatelessWidget {
         body: SingleChildScrollView(
           child: Column(
             children: [
-              ImageCardWidget(
-                image: movieEntity.posterPath,
+              Container(
+                height: 400,
+                width: 320,
+                child: ImageCardWidget(
+                  image: movieEntity.posterPath,
+                ),
               ),
               const Padding(
                 padding: EdgeInsets.only(
@@ -41,6 +45,7 @@ class DetailsPage extends StatelessWidget {
                     color: Colors.black,
                     fontWeight: FontWeight.bold,
                   ),
+                  textAlign: TextAlign.justify,
                 ),
               ),
               Padding(
