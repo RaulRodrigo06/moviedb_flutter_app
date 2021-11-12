@@ -32,6 +32,7 @@ class DetailsPage extends StatelessWidget {
               const Padding(
                 padding: EdgeInsets.only(
                   top: 10,
+                  right: 10,
                 ),
                 child: Text(
                   Strings.overview,
