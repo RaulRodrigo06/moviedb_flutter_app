@@ -6,7 +6,7 @@ abstract class Strings {
   static const noConnection = 'No network connection. Try again later.';
   static const standardErrorMessage =
       'Sorry we had an unexpected event, please try again later';
-  static TextSpan titleAppBarHome() {
+  static TextSpan titleAppBarStandard() {
     return TextSpan(
         text: 'Hello, \n ',
         style: const TextStyle(

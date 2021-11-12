@@ -12,9 +12,11 @@ class CardMoviesWidget extends StatelessWidget {
   const CardMoviesWidget({
     Key? key,
     required this.movieEntity,
+    required this.isFavoritePage,
   }) : super(key: key);
 
   final MovieEntity movieEntity;
+  final bool isFavoritePage;
   @override
   Widget build(BuildContext context) {
     return InkWell(
@@ -57,11 +59,15 @@ class CardMoviesWidget extends StatelessWidget {
               ScoreWidget(
                 voteAvarage: movieEntity.voteAverage,
               ),
-              Expanded(
-                child: ImageCardWidget(
-                  image: movieEntity.posterPath,
-                ),
-              ),
+              !isFavoritePage
+                  ? Expanded(
+                      child: ImageCardWidget(
+                        image: movieEntity.posterPath,
+                      ),
+                    )
+                  : ImageCardWidget(
+                      image: movieEntity.posterPath,
+                    ),
             ],
           ),
         ),

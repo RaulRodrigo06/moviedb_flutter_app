@@ -57,10 +57,10 @@ class FavoriteMovieCubit extends Cubit<FavoriteMovieState> {
       TableNames.favoriteTable,
       MovieModel.fromDatabase,
     );
-
+    List<MovieEntity> generateList = List.from(favoritesFromDatabase);
     emit(
       FavoriteMovieLoadedState(
-        movieListEntity: favoritesFromDatabase,
+        movieListEntity: generateList,
       ),
     );
   }

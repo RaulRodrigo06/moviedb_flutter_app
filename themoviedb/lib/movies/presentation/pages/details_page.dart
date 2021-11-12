@@ -14,45 +14,47 @@ class DetailsPage extends StatelessWidget {
   final MovieEntity movieEntity;
   @override
   Widget build(BuildContext context) {
-    return Scaffold(
-      appBar: CustomAppBar(
-        appBarAction: DetailPageAppBarActionWidget(
-          movieEntity: movieEntity,
+    return SafeArea(
+      child: Scaffold(
+        appBar: CustomAppBar(
+          appBarAction: DetailPageAppBarActionWidget(
+            movieEntity: movieEntity,
+          ),
+          title: _appBarTitle(),
+          pageEnum: PageEnum.isDetailPage,
         ),
-        title: _appBarTitle(),
-        pageEnum: PageEnum.isDetailPage,
-      ),
-      body: SingleChildScrollView(
-        child: Column(
-          children: [
-            ImageCardWidget(
-              image: movieEntity.posterPath,
-            ),
-            const Padding(
-              padding: EdgeInsets.only(
-                top: 10,
+        body: SingleChildScrollView(
+          child: Column(
+            children: [
+              ImageCardWidget(
+                image: movieEntity.posterPath,
               ),
-              child: Text(
-                Strings.overview,
-                style: TextStyle(
-                  fontSize: 15,
-                  color: Colors.black,
-                  fontWeight: FontWeight.bold,
+              const Padding(
+                padding: EdgeInsets.only(
+                  top: 10,
+                ),
+                child: Text(
+                  Strings.overview,
+                  style: TextStyle(
+                    fontSize: 15,
+                    color: Colors.black,
+                    fontWeight: FontWeight.bold,
+                  ),
                 ),
               ),
-            ),
-            Padding(
-              padding: const EdgeInsets.all(8.0),
-              child: Text(
-                '${movieEntity.overview}',
-                style: const TextStyle(
-                  fontSize: 12,
-                  color: Colors.black,
-                  fontWeight: FontWeight.normal,
+              Padding(
+                padding: const EdgeInsets.all(8.0),
+                child: Text(
+                  '${movieEntity.overview}',
+                  style: const TextStyle(
+                    fontSize: 12,
+                    color: Colors.black,
+                    fontWeight: FontWeight.normal,
+                  ),
                 ),
               ),
-            ),
-          ],
+            ],
+          ),
         ),
       ),
     );

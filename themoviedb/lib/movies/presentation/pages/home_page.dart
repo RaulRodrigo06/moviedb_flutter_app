@@ -35,7 +35,7 @@ class _HomePageState extends State<HomePage> {
     return SafeArea(
       child: Scaffold(
         appBar: CustomAppBar(
-          title: Strings.titleAppBarHome(),
+          title: Strings.titleAppBarStandard(),
           pageEnum: PageEnum.isHomePage,
           appBarAction: const HomePageAppBarActionWidget(),
         ),
@@ -56,6 +56,7 @@ class _HomePageState extends State<HomePage> {
                     itemBuilder: (context, index) {
                       return CardMoviesWidget(
                         movieEntity: state.movieListEntity[index],
+                        isFavoritePage: false,
                       );
                     }),
               );
