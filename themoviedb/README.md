@@ -49,7 +49,7 @@ An Flutter app challenge using TheMovieDB developer API.
 |:----------------:|:-----------------:|:-------------------:|:------------------:|
 |![splash-screen][]| ![home-screen][]  | ![details-screen][] |![favorites-screen][]|
 
-[splash-screen]:https://gitlab.com/r1024/the-movie-db-flutter-app/-/blob/develop/themoviedb/sources/Screenshot_1636755449.png
-[home-screen]: https://gitlab.com/r1024/the-movie-db-flutter-app/-/blob/develop/themoviedb/sources/Screenshot_1636755511.png
-[details-screen]: https://gitlab.com/r1024/the-movie-db-flutter-app/-/blob/develop/themoviedb/sources/Screenshot_1636755565.png
-[favorites-screen]: https://gitlab.com/r1024/the-movie-db-flutter-app/-/blob/develop/themoviedb/sources/Screenshot_1636755573.png
+[splash-screen]:https://gitlab.com/r1024/the-movie-db-flutter-app/-/blob/develop/themoviedb/sources/Screenshot_1636755449.png?raw=true
+[home-screen]: https://gitlab.com/r1024/the-movie-db-flutter-app/-/blob/develop/themoviedb/sources/Screenshot_1636755511.png?raw=true
+[details-screen]: https://gitlab.com/r1024/the-movie-db-flutter-app/-/blob/develop/themoviedb/sources/Screenshot_1636755565.png?raw=true
+[favorites-screen]: https://gitlab.com/r1024/the-movie-db-flutter-app/-/blob/develop/themoviedb/sources/Screenshot_1636755573.png?raw=true
