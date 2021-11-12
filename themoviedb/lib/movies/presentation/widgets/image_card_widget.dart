@@ -14,6 +14,12 @@ class ImageCardWidget extends StatelessWidget {
     return Image.network(
       'https://image.tmdb.org/t/p/original$image',
       fit: BoxFit.fill,
+      errorBuilder:
+          (BuildContext context, Object exception, StackTrace? stackTrace) {
+        return const Icon(
+          Icons.image,
+        );
+      },
     );
   }
 }
