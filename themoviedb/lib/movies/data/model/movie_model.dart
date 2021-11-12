@@ -26,4 +26,15 @@ class MovieModel extends MovieEntity {
         originalTitle: json['original_title'],
         voteAverage: json['vote_average'].toDouble());
   }
+
+  Map<String, dynamic> toJson() {
+    return <String, dynamic>{
+      'id': id,
+      'poster_path': posterPath,
+      'overview': overview,
+      'release_date': releaseDate,
+      'original_title': originalTitle,
+      'vote_average': voteAverage,
+    };
+  }
 }

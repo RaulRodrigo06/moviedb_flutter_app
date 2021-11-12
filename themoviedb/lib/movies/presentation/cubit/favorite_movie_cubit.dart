@@ -15,12 +15,11 @@ class FavoriteMovieCubit extends Cubit<FavoriteMovieState> {
     } else {
       movieListEntity.add(movieEntity);
     }
-
+    List<MovieEntity> generateList = List.from(movieListEntity);
     emit(
       FavoriteMovieLoadedState(
-        movieListEntity: movieListEntity,
+        movieListEntity: generateList,
       ),
     );
-    emit(FavoriteMovieInitialState());
   }
 }

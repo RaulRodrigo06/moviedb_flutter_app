@@ -1,5 +1,6 @@
 import 'package:get_it/get_it.dart';
 import 'package:themoviedb/core/sqflite/i_database.dart';
+import 'package:themoviedb/core/sqflite/queries.dart';
 
 class DataBaseConfig {
   IDataBase? _db;
@@ -13,19 +14,13 @@ class DataBaseConfig {
     _db = GetIt.I.get<IDataBase>();
   }
 
-  // Future criarBanco() async {
-  //   await _db?.initDataBase('dashboard_sprints_db', 1, _getQueries());
-  // }
+  Future creatDb() async {
+    await _db?.initDataBase('movie_db_database', 1, _getQueries());
+  }
 
-  // List<String> _getQueries() {
-  //   return [
-  //     CreateTableQueries.queryFolders,
-  //     CreateTableQueries.queryTags,
-  //     CreateTableQueries.queryTasks,
-  //     CreateTableQueries.queryCustomField,
-  //     CreateTableQueries.queryOptions,
-  //     CreateTableQueries.querySquad,
-  //     CreateTableQueries.queryList,
-  //   ];
-  // }
+  List<String> _getQueries() {
+    return [
+      CreateQueries.favoriteMovies,
+    ];
+  }
 }

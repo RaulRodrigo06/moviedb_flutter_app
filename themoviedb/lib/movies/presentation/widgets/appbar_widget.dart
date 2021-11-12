@@ -21,7 +21,7 @@ class CustomAppBar extends StatelessWidget with PreferredSizeWidget {
     return AppBar(
       title: Text.rich(title),
       backgroundColor: Colors.white.withOpacity(0.9),
-      elevation: 0.0,
+      elevation: 8.0,
       leading:
           pageEnum == PageEnum.isDetailPage ? const PreviousPageButton() : null,
       actions: [

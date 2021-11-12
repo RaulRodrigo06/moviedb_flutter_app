@@ -1,6 +1,8 @@
 import 'package:get_it/get_it.dart';
 import 'package:themoviedb/core/response/api_request_manager.dart';
 import 'package:themoviedb/core/response/i_api_request_manager.dart';
+import 'package:themoviedb/core/sqflite/database.dart';
+import 'package:themoviedb/core/sqflite/i_database.dart';
 import 'package:themoviedb/movies/data/datasource/i_movie_datasource.dart';
 import 'package:themoviedb/movies/data/datasource/movie_datasource.dart';
 import 'package:themoviedb/movies/data/repository/movie_repository.dart';
@@ -37,7 +39,10 @@ Future<void> init() async {
       getPopularMovieUsecase: injector(),
     ),
   );
-  injector.registerLazySingleton(
+  injector.registerLazySingleton<IDataBase>(
+    () => DataBase(),
+  );
+  injector.registerFactory(
     () => FavoriteMovieCubit(),
   );
 }
