@@ -6,7 +6,7 @@ import 'package:themoviedb/core/response/states/erro.dart';
 import 'package:themoviedb/core/response/states/success.dart';
 import 'package:themoviedb/movies/data/datasource/movie_datasource.dart';
 
-import '../../../mocks/most_popular_movie_response.dart';
+import '../../../mocks/list_movie_mock.dart';
 
 class MockIApiRequestManager extends Mock implements IApiRequestManager {}
 
@@ -25,7 +25,7 @@ void main() {
     when(() => iApiRequestManager.getAsync(any())).thenAnswer(
       (_) async => Future<Success>.value(
         Success(
-          data: tMostPopularMovieResult,
+          data: tListMovieMock,
           statusCode: 200,
         ),
       ),
@@ -43,12 +43,12 @@ void main() {
     );
   }
 
-  test('should return a SpaceMediaModel when the call is successful', () async {
+  test('should return a Sucess when the call is successful', () async {
     successMock();
     final result = await datasource.getMoviesMostPopular(page: 1);
     expect(result, isA<Success>());
   });
-  test('should throw a ServerException when the call is unccessful', () async {
+  test('should throw a FutureApiResult when the call is unccessful', () async {
     errorMock();
     final result = datasource.getMoviesMostPopular(page: 1);
     expect(result, isA<Future<ApiResult>>());
