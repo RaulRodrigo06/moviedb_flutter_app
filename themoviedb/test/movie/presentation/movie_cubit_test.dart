@@ -55,21 +55,26 @@ void main() {
       expect(cubit.state, MovieInitialState());
     });
     blocTest<MovieCubit, MovieState>(
-      'Deve parar fluxo ao cancelar escolha de pdf',
-      build: () => MovieCubit(
-        getPopularMovieUsecase: mockGetPopularMovieUsecase,
-        getTopRatedMovieUsecase: mockGetTopRatedMovieUsecase,
-        dataBase: iDataBase,
-      ),
-      act: (MovieCubit cubit) {
+      'Should emit LoadedState cubit',
+      build: () {
+        when(() => mockGetPopularMovieUsecase.call(page: 1)).thenAnswer(
+          (_) async => const Right(
+            tMovieListEntity,
+          ),
+        );
+
         when(() => mockGetTopRatedMovieUsecase.call(page: 1)).thenAnswer(
           (_) async => const Right(
             tMovieListEntity,
           ),
         );
-        cubit.getPopularMovieList();
+        return cubit;
       },
-      expect: () => <dynamic>[],
+      act: (cubit) => cubit.getPopularMovieList(),
+      expect: () => <dynamic>[
+        MovieLoadingState(),
+        MovieLoadedState(tMovieListEntity.movieList),
+      ],
     );
   });
 }
