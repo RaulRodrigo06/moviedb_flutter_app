@@ -9,7 +9,6 @@ class MovieEntity extends Equatable {
     this.posterPath,
     this.releaseDate,
     this.voteAverage,
-    this.poster,
   });
 
   final String? posterPath;
@@ -18,7 +17,6 @@ class MovieEntity extends Equatable {
   final int id;
   final String originalTitle;
   final double? voteAverage;
-  final Image? poster;
 
   @override
   List<dynamic> get props => [
@@ -27,7 +25,6 @@ class MovieEntity extends Equatable {
         releaseDate,
         id,
         originalTitle,
-        voteAverage,
-        poster
+      voteAverage,
       ];
 }
