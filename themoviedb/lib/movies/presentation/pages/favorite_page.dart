@@ -40,7 +40,7 @@ class _FavoritePageState extends State<FavoritePage> {
         ),
         body: BlocBuilder<FavoriteMovieCubit, FavoriteMovieState>(
           builder: (context, state) {
-            if (state is FavoriteMovieLoadedState ) {
+            if (state is FavoriteMovieLoadedState) {
               return ListView.builder(
                   itemCount: state.movieListEntity.length,
                   itemBuilder: (context, index) {
