@@ -26,7 +26,7 @@ class DetailsPage extends StatelessWidget {
         body: SingleChildScrollView(
           child: Column(
             children: [
-              Container(
+              SizedBox(
                 height: 400,
                 width: 320,
                 child: ImageCardWidget(

@@ -33,6 +33,7 @@ class _FavoritePageState extends State<FavoritePage> {
   Widget build(BuildContext context) {
     return SafeArea(
       child: Scaffold(
+        extendBodyBehindAppBar: true,
         appBar: CustomAppBar(
           title: Strings.titleAppBarStandard(),
           pageEnum: PageEnum.isFavoritePage,
