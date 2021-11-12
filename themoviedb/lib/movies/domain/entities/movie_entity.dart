@@ -1,5 +1,4 @@
 import 'package:equatable/equatable.dart';
-import 'package:flutter/cupertino.dart';
 
 class MovieEntity extends Equatable {
   const MovieEntity({
@@ -25,6 +24,6 @@ class MovieEntity extends Equatable {
         releaseDate,
         id,
         originalTitle,
-      voteAverage,
+        voteAverage,
       ];
 }
