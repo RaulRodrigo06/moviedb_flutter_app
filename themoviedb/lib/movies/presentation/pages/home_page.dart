@@ -15,43 +15,53 @@ class HomePage extends StatefulWidget {
 }
 
 class _HomePageState extends State<HomePage> {
+  MovieCubit? movieCubit;
   @override
   void initState() {
     super.initState();
-    BlocProvider.of<MovieCubit>(context).getPopularMovieList();
+    movieCubit = context.read<MovieCubit>();
+    movieCubit?.getPopularMovieList();
+  }
+
+  @override
+  void dispose() {
+    movieCubit?.close();
+    super.dispose();
   }
 
   @override
   Widget build(BuildContext context) {
-    return Scaffold(
-      extendBodyBehindAppBar: true,
-      appBar: CustomAppBar(
-        title: Strings.titleAppBarHome(),
-        pageEnum: PageEnum.isHomePage,
-        appBarAction: const HomePageAppBarActionWidget(),
-      ),
-      body: BlocBuilder<MovieCubit, MovieState>(
-        builder: (context, state) {
-          if (state is MovieLoadedState) {
-            return GridView.builder(
-                gridDelegate: const SliverGridDelegateWithFixedCrossAxisCount(
-                    crossAxisCount: 2, childAspectRatio: 0.5),
-                itemCount: state.movieListEntity.movieList.length,
-                itemBuilder: (context, index) {
-                  return CardMoviesWidget(
-                    movieEntity: state.movieListEntity.movieList[index],
-                  );
-                });
-          } else if (state is MovieErrorState) {
-            return Center(
-              child: Text(state.message ?? 'sorry we found an error'),
-            );
-          } else {
-            return const Center(
-              child: CircularProgressIndicator(),
-            );
-          }
-        },
+    return SafeArea(
+      child: Scaffold(
+        extendBodyBehindAppBar: true,
+        appBar: CustomAppBar(
+          title: Strings.titleAppBarHome(),
+          pageEnum: PageEnum.isHomePage,
+          appBarAction: const HomePageAppBarActionWidget(),
+        ),
+        body: BlocBuilder<MovieCubit, MovieState>(
+          builder: (context, state) {
+            if (state is MovieLoadedState) {
+              return GridView.builder(
+                  gridDelegate: const SliverGridDelegateWithFixedCrossAxisCount(
+                      crossAxisCount: 2, childAspectRatio: 0.5),
+                  itemCount: state.movieListEntity.length,
+                  itemBuilder: (context, index) {
+                    return CardMoviesWidget(
+                      movieEntity: state.movieListEntity[index],
+                    );
+                  });
+            } else if (state is MovieErrorState) {
+              return Center(
+                child: Text(state.message ?? 'sorry we found an error'),
+              );
+            } else {
+              return const Center(
+                child: CircularProgressIndicator(),
+              );
+            }
+          },
+        ),
       ),
     );
   }

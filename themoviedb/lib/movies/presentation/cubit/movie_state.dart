@@ -23,7 +23,7 @@ class MovieErrorState extends MovieState {
 
 class MovieLoadedState extends MovieState {
   MovieLoadedState(this.movieListEntity);
-  final MovieListEntity movieListEntity;
+  final List<MovieEntity> movieListEntity;
 
   @override
   List<Object?> get props => [movieListEntity];
