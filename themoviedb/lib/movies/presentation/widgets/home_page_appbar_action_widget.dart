@@ -3,6 +3,7 @@ import 'package:flutter_bloc/flutter_bloc.dart';
 import 'package:themoviedb/core/app_strings.dart';
 import 'package:themoviedb/injection_container.dart';
 import 'package:themoviedb/movies/presentation/cubit/favorite_movie_cubit.dart';
+import 'package:themoviedb/movies/presentation/cubit/movie_cubit.dart';
 import 'package:themoviedb/movies/presentation/pages/favorite_page.dart';
 import 'package:themoviedb/movies/presentation/sort_enum.dart';
 import 'package:themoviedb/movies/presentation/widgets/filter_dialog_option.dart';
@@ -47,15 +48,6 @@ class _HomePageAppBarActionWidgetState
           const SizedBox(
             width: 15,
           ),
-          // ElevatedButton.icon(
-          //     onPressed: () {
-          //       _confirmDialog();
-          //     },
-          //     icon: Icon(
-          //       Icons.filter_list,
-          //       color: Colors.yellowAccent[700],
-          //     ),
-          //     label: Container())
           InkWell(
             onTap: () {
               _confirmDialog();
@@ -120,7 +112,7 @@ class _HomePageAppBarActionWidgetState
               ),
               SimpleDialogOption(
                 onPressed: () {
-                  Navigator.pop(context, SortEnum.popular);
+                  Navigator.pop(context, SortEnum.favorite);
                 },
                 child: Padding(
                   padding: const EdgeInsets.all(4.0),
@@ -136,14 +128,14 @@ class _HomePageAppBarActionWidgetState
           );
         })) {
       case SortEnum.rated:
-        debugPrint('Rated');
+        BlocProvider.of<MovieCubit>(context).setSort(SortEnum.rated);
         break;
 
       case SortEnum.popular:
-        debugPrint('Popular');
+        BlocProvider.of<MovieCubit>(context).setSort(SortEnum.popular);
         break;
       default:
-        debugPrint('Favs');
+        BlocProvider.of<MovieCubit>(context).setSort(SortEnum.favorite);
     }
   }
 }

@@ -37,4 +37,30 @@ class MovieRepository with DecodeModelMixin implements IMovieRepository {
       );
     }
   }
+
+  @override
+  Future<Either<Erro, MovieListEntity>> getTopRatedMovieList(
+      {required int page}) async {
+    final result = await datasource.getMoviesByRate(page: page);
+
+    if (result is Success) {
+      return tryDecode(() async {
+        final movieList = MovieListModel.fromJson(result.data);
+        return Right(movieList);
+      }, orElse: (dynamic _) {
+        return Left(
+          Erro(
+            statusMessage: Strings.standardErrorMessage,
+          ),
+        );
+      });
+    } else {
+      return Left(
+        Erro(
+          statusMessage: result.statusMessage!,
+          statusCode: result.statusCode,
+        ),
+      );
+    }
+  }
 }

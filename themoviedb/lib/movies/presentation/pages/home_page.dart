@@ -51,7 +51,9 @@ class _HomePageState extends State<HomePage> {
                 child: GridView.builder(
                     gridDelegate:
                         const SliverGridDelegateWithFixedCrossAxisCount(
-                            crossAxisCount: 2, childAspectRatio: 0.5),
+                      crossAxisCount: 2,
+                      childAspectRatio: 0.5,
+                    ),
                     itemCount: state.movieListEntity.length,
                     itemBuilder: (context, index) {
                       return CardMoviesWidget(
@@ -61,9 +63,14 @@ class _HomePageState extends State<HomePage> {
                     }),
               );
             } else if (state is MovieErrorState) {
-              return Center(
-                child: Text(state.message ?? 'sorry we found an error'),
-              );
+              if (state.message == Strings.noConnection) {
+                movieCubit?.getFavoriteMovieList();
+                return Container();
+              } else {
+                return Center(
+                  child: Text(state.message ?? Strings.standardErrorMessage),
+                );
+              }
             } else {
               return const Center(
                 child: CircularProgressIndicator(),

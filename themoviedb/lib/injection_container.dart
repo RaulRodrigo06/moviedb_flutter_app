@@ -8,6 +8,7 @@ import 'package:themoviedb/movies/data/datasource/movie_datasource.dart';
 import 'package:themoviedb/movies/data/repository/movie_repository.dart';
 import 'package:themoviedb/movies/domain/repository/i_movie_repository.dart';
 import 'package:themoviedb/movies/domain/usecase/get_popular_movie_usecase.dart';
+import 'package:themoviedb/movies/domain/usecase/get_top_rated_movie_usecase.dart';
 import 'package:themoviedb/movies/presentation/cubit/favorite_movie_cubit.dart';
 import 'package:themoviedb/movies/presentation/cubit/movie_cubit.dart';
 
@@ -28,20 +29,27 @@ Future<void> init() async {
       datasource: injector(),
     ),
   );
-
+  injector.registerLazySingleton(
+    () => GetTopRatedMovieUsecase(
+      repository: injector(),
+    ),
+  );
   injector.registerLazySingleton(
     () => GetPopularMovieUsecase(
       repository: injector(),
     ),
   );
-  injector.registerFactory(
-    () => MovieCubit(
-      getPopularMovieUsecase: injector(),
-    ),
-  );
   injector.registerFactory<IDataBase>(
     () => DataBase(),
   );
+  injector.registerFactory(
+    () => MovieCubit(
+      getPopularMovieUsecase: injector(),
+      getTopRatedMovieUsecase: injector(),
+      dataBase: injector(),
+    ),
+  );
+
   injector.registerFactory(
     () => FavoriteMovieCubit(
       dataBase: injector(),
