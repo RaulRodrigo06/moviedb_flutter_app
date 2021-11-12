@@ -24,7 +24,8 @@ class FavoriteMovieCubit extends Cubit<FavoriteMovieState> {
     if (favoritesFromDatabase.contains(movieEntity)) {
       await dataBase.delete(
         TableNames.favoriteTable,
-        where: movieEntity.id.toString(),
+        where: 'id',
+        whereArgs: [movieEntity.id],
       );
     } else {
       await dataBase.insert(
@@ -47,6 +48,19 @@ class FavoriteMovieCubit extends Cubit<FavoriteMovieState> {
     emit(
       FavoriteMovieLoadedState(
         movieListEntity: generateList,
+      ),
+    );
+  }
+
+  Future<void> getFavoriteMovies() async {
+    final favoritesFromDatabase = await dataBase.getAll(
+      TableNames.favoriteTable,
+      MovieModel.fromDatabase,
+    );
+
+    emit(
+      FavoriteMovieLoadedState(
+        movieListEntity: favoritesFromDatabase,
       ),
     );
   }

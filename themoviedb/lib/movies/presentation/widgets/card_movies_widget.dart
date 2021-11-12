@@ -22,8 +22,8 @@ class CardMoviesWidget extends StatelessWidget {
         Navigator.push(
           context,
           MaterialPageRoute(
-            builder: (context) => BlocProvider<FavoriteMovieCubit>.value(
-              value: injector<FavoriteMovieCubit>(),
+            builder: (context) => BlocProvider<FavoriteMovieCubit>(
+              create: (_) => injector<FavoriteMovieCubit>(),
               child: DetailsPage(
                 movieEntity: movieEntity,
               ),

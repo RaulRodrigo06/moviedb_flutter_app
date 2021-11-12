@@ -19,20 +19,14 @@ class MyApp extends StatelessWidget {
   @override
   Widget build(BuildContext context) {
     return MaterialApp(
-        title: 'Flutter Demo',
-        theme: ThemeData(
-          primarySwatch: Colors.blue,
-        ),
-        home: MultiBlocProvider(
-          providers: [
-            BlocProvider<MovieCubit>(
-              create: (_) => injector<MovieCubit>(),
-            ),
-            BlocProvider<FavoriteMovieCubit>(
-              create: (_) => injector<FavoriteMovieCubit>(),
-            ),
-          ],
-          child: const HomePage(),
-        ));
+      title: 'Flutter Demo',
+      theme: ThemeData(
+        primarySwatch: Colors.blue,
+      ),
+      home: BlocProvider<MovieCubit>(
+        create: (_) => injector<MovieCubit>(),
+        child: const HomePage(),
+      ),
+    );
   }
 }
