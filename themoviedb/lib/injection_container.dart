@@ -39,10 +39,12 @@ Future<void> init() async {
       getPopularMovieUsecase: injector(),
     ),
   );
-  injector.registerLazySingleton<IDataBase>(
+  injector.registerFactory<IDataBase>(
     () => DataBase(),
   );
   injector.registerFactory(
-    () => FavoriteMovieCubit(),
+    () => FavoriteMovieCubit(
+      dataBase: injector(),
+    ),
   );
 }

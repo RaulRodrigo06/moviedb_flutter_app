@@ -2,6 +2,7 @@ import 'package:flutter/material.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
 import 'package:themoviedb/movies/domain/entities/movie_entity.dart';
 import 'package:themoviedb/movies/presentation/cubit/favorite_movie_cubit.dart';
+import 'package:themoviedb/movies/presentation/cubit/movie_cubit.dart';
 
 class DetailPageAppBarActionWidget extends StatefulWidget {
   const DetailPageAppBarActionWidget({
@@ -29,7 +30,7 @@ class _DetailPageAppBarActionWidgetState
         child: BlocBuilder<FavoriteMovieCubit, FavoriteMovieState>(
           builder: (context, state) {
             if (BlocProvider.of<FavoriteMovieCubit>(context)
-                .movieListEntity
+                .listFavoriteMovies
                 .contains(widget.movieEntity)) {
               return Icon(
                 Icons.star,

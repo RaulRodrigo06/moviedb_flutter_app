@@ -19,15 +19,16 @@ class MovieModel extends MovieEntity {
 
   factory MovieModel.fromJson(Map<String, dynamic> json) {
     return MovieModel(
-        id: json['id'],
-        posterPath: json['poster_path'],
-        overview: json['overview'],
-        releaseDate: json['release_date'],
-        originalTitle: json['original_title'],
-        voteAverage: json['vote_average'].toDouble());
+      id: json['id'],
+      posterPath: json['poster_path'],
+      overview: json['overview'],
+      releaseDate: json['release_date'],
+      originalTitle: json['original_title'],
+      voteAverage: json['vote_average'].toDouble(),
+    );
   }
 
-  Map<String, dynamic> toJson() {
+  Map<String, dynamic> toDataBase() {
     return <String, dynamic>{
       'id': id,
       'poster_path': posterPath,
@@ -36,5 +37,16 @@ class MovieModel extends MovieEntity {
       'original_title': originalTitle,
       'vote_average': voteAverage,
     };
+  }
+
+  static MovieModel fromDatabase(Map<String, dynamic> json) {
+    return MovieModel(
+      id: json['id'],
+      posterPath: json['poster_path'],
+      overview: json['overview'],
+      releaseDate: json['release_date'],
+      originalTitle: json['original_title'],
+      voteAverage: json['vote_average'].toDouble(),
+    );
   }
 }

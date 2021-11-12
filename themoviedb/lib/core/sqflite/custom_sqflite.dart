@@ -10,33 +10,33 @@ class CustomSqflite extends Sqflite {
     return _instance ??= CustomSqflite();
   }
 
-  Future<void> carregarBanco(
-    String nomeDoBanco,
-    int versaoDoBanco,
-    List<String> listaDeQuerysDasTabelas,
+  Future<void> loadDb(
+    String dbName,
+    int dbVersion,
+    List<String> queryList,
   ) async {
     var prefs = await SharedPreferences.getInstance();
 
-    db = await _createDatabase(nomeDoBanco, versaoDoBanco);
-    var bancoCriado = prefs.getBool('banco_criado');
-    if (bancoCriado == null) {
-      for (var query in listaDeQuerysDasTabelas) {
-        await db!.execute(query);
+    db = await _createDatabase(dbName, dbVersion);
+    var dbInit = prefs.getBool('init_db');
+    if (dbInit == null) {
+      for (var query in queryList) {
+        await db?.execute(query);
       }
-      prefs.setBool('banco_criado', true);
+      prefs.setBool('init_db', true);
     }
   }
 
   Future _createDatabase(
-    String nomeDoBanco,
-    int versaoDoBanco,
+    String dbName,
+    int dbVersion,
   ) async {
     return await openDatabase(
       join(
         await getDatabasesPath(),
-        nomeDoBanco,
+        dbName,
       ),
-      version: versaoDoBanco,
+      version: dbVersion,
     );
   }
 }

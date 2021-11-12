@@ -20,7 +20,7 @@ class DataBaseConfig {
 
   List<String> _getQueries() {
     return [
-      CreateQueries.favoriteMovies,
+      CreateQueries.queryFavorites,
     ];
   }
 }

@@ -1,11 +1,11 @@
 abstract class IDataBase {
-  Future<int> delete(String table, {String? column, List? whereArgs});
+  Future<int> delete(String table, {String? where, List? whereArgs});
 
   Future<List<T>> getAll<T>(
-      String tabela, T Function(Map<String, dynamic> p1) funcaoDeConversao,
+      String tabela, T Function(Map<String, dynamic> p1) convertFunction,
       {String? where, List? whereArgs, String? orderBy});
 
-  Future<int> insert(String tabela, Map<String, dynamic> objeto);
+  Future<int> insert(String table, Map<String, dynamic> object);
 
-  Future initDataBase(String nomeDB, int versaoDB, List<String> queries);
+  Future initDataBase(String dbName, int dbVersion, List<String> queryList);
 }
