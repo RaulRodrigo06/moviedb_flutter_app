@@ -91,23 +91,30 @@ class _DetailsPageState extends State<DetailsPage> {
                     listGenreEntity: state.movieDetailEntity.genresEntity,
                     numberOfGenres: state.movieDetailEntity.genresEntity.length,
                   ),
-                  const Padding(
-                    padding: EdgeInsets.only(
-                      top: 10,
-                      right: 10,
-                    ),
-                    child: SubtitleMovieDetailPageWidget(
-                      subtitle: Strings.trailer,
-                    ),
-                  ),
-                  const SizedBox(height: 10),
-                  MovieVideoWidget(
-                    controller: YoutubePlayerController(
-                        initialVideoId: state.movieDetailEntity.movieVideo,
-                        flags: const YoutubePlayerFlags(
-                          autoPlay: true,
-                        )),
-                  )
+                  if (state.movieDetailEntity.movieVideo !=
+                      Strings.errorRequestMovieVideo)
+                    Column(
+                      children: [
+                        const Padding(
+                          padding: EdgeInsets.only(
+                            top: 10,
+                            right: 10,
+                          ),
+                          child: SubtitleMovieDetailPageWidget(
+                            subtitle: Strings.trailer,
+                          ),
+                        ),
+                        const SizedBox(height: 10),
+                        MovieVideoWidget(
+                          controller: YoutubePlayerController(
+                              initialVideoId:
+                                  state.movieDetailEntity.movieVideo,
+                              flags: const YoutubePlayerFlags(
+                                autoPlay: true,
+                              )),
+                        ),
+                      ],
+                    )
                 ],
               ),
             );

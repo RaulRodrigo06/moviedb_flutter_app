@@ -1,4 +1,3 @@
-
 import 'package:bloc/bloc.dart';
 import 'package:equatable/equatable.dart';
 import 'package:themoviedb/core/app_strings.dart';
@@ -26,7 +25,9 @@ class MovieDetailCubit extends Cubit<MovieDetailState> {
 
     String _movieVideoResult = movieVideo.fold(
       (error) => Strings.errorRequestMovieVideo,
-      (movieVideo) => movieVideo.listMovieVideoEntity.first.key,
+      (movieVideo) => movieVideo.listMovieVideoEntity.isNotEmpty
+          ? movieVideo.listMovieVideoEntity.first.key
+          : Strings.errorRequestMovieVideo,
     );
 
     movieDetail.fold(
