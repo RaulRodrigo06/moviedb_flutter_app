@@ -42,6 +42,8 @@ An Flutter app challenge using TheMovieDB developer API.
 * Flutter Bloc - Used to state management.
 * Bloc Test - Used to create state management unit test.
 * Shared Preferences - Used to help create the database.
+* Youtube player flutter - Used to open youtube videos.
+
 
 
 ## Screenshots
@@ -51,5 +53,5 @@ An Flutter app challenge using TheMovieDB developer API.
 
 [splash-screen]:https://gitlab.com/r1024/the-movie-db-flutter-app/-/blob/develop/themoviedb/sources/Screenshot_1636755449.png?raw=true
 [home-screen]: https://gitlab.com/r1024/the-movie-db-flutter-app/-/blob/develop/themoviedb/sources/Screenshot_1636755511.png?raw=true
-[details-screen]: https://gitlab.com/r1024/the-movie-db-flutter-app/-/blob/develop/themoviedb/sources/Screenshot_1636755565.png?raw=true
+[details-screen]: https://gitlab.com/r1024/the-movie-db-flutter-app/-/blob/develop/themoviedb/sources/Screenshot_1636950218.png?raw=true
 [favorites-screen]: https://gitlab.com/r1024/the-movie-db-flutter-app/-/blob/develop/themoviedb/sources/Screenshot_1636755573.png?raw=true

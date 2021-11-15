@@ -7,7 +7,6 @@ import 'package:themoviedb/movies/domain/entities/movie_list_entity.dart';
 
 import '../../../mocks/list_movie_mock.dart';
 
-
 void main() {
   const tMovieModel = MovieModel(
     id: 631843,
@@ -22,6 +21,7 @@ void main() {
     pageNumber: 4,
     totalPages: 500,
   );
+
   test('should be a subclass of MovieEntity', () {
     expect(tMovieListModel, isA<MovieListEntity>());
   });

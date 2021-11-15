@@ -7,10 +7,13 @@ import 'package:themoviedb/movies/data/datasource/i_movie_datasource.dart';
 import 'package:themoviedb/movies/data/datasource/movie_datasource.dart';
 import 'package:themoviedb/movies/data/repository/movie_repository.dart';
 import 'package:themoviedb/movies/domain/repository/i_movie_repository.dart';
+import 'package:themoviedb/movies/domain/usecase/get_movie_detail_usecase.dart';
+import 'package:themoviedb/movies/domain/usecase/get_movie_video_usecase.dart';
 import 'package:themoviedb/movies/domain/usecase/get_popular_movie_usecase.dart';
 import 'package:themoviedb/movies/domain/usecase/get_top_rated_movie_usecase.dart';
 import 'package:themoviedb/movies/presentation/cubit/favorite_movie_cubit.dart';
 import 'package:themoviedb/movies/presentation/cubit/movie_cubit.dart';
+import 'package:themoviedb/movies/presentation/cubit/movie_detail_cubit.dart';
 
 final injector = GetIt.instance;
 
@@ -35,6 +38,16 @@ Future<void> init() async {
     ),
   );
   injector.registerLazySingleton(
+    () => GetMovieDetailUsecase(
+      repository: injector(),
+    ),
+  );
+  injector.registerLazySingleton(
+    () => GetMovieVideoUsecase(
+      repository: injector(),
+    ),
+  );
+  injector.registerLazySingleton(
     () => GetPopularMovieUsecase(
       repository: injector(),
     ),
@@ -53,6 +66,12 @@ Future<void> init() async {
   injector.registerFactory(
     () => FavoriteMovieCubit(
       dataBase: injector(),
+    ),
+  );
+  injector.registerFactory(
+    () => MovieDetailCubit(
+      getMovieDetailUsecase: injector(),
+      getMovieVideoUsecase: injector(),
     ),
   );
 }

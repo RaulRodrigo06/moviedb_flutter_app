@@ -50,7 +50,7 @@ void main() {
     totalPages: 500,
   );
 
-  group('Teste HomePagamentosCubit', () {
+  group('Test MovieCubit', () {
     test('Should return MovieInitialState as initial state', () {
       expect(cubit.state, MovieInitialState());
     });
