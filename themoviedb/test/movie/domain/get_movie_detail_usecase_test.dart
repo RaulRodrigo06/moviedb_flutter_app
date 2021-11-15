@@ -4,11 +4,9 @@ import 'package:mocktail/mocktail.dart';
 import 'package:themoviedb/core/response/states/erro.dart';
 import 'package:themoviedb/movies/data/model/genres_model.dart';
 import 'package:themoviedb/movies/domain/entities/movie_detail_entity.dart';
-import 'package:themoviedb/movies/domain/entities/movie_video_list_entity.dart';
-import 'package:themoviedb/movies/domain/entities/movies_video_entity.dart';
 import 'package:themoviedb/movies/domain/repository/i_movie_repository.dart';
 import 'package:themoviedb/movies/domain/usecase/get_movie_detail_usecase.dart';
-import 'package:themoviedb/movies/domain/usecase/get_movie_video_usecase.dart';
+
 
 class MockMovieRepository extends Mock implements IMovieRepository {}
 
