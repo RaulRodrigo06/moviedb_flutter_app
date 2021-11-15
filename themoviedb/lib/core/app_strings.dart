@@ -3,6 +3,9 @@ import 'package:flutter/material.dart';
 
 abstract class Strings {
   static const theHotStuff = 'The hot stuff!';
+  static const genres = 'Genres';
+  static const trailer = 'Trailer';
+  static const errorRequestMovieVideo = 'Error requesting movie video';
   static const mostPopular = 'Show me the most popular movies!';
   static const onlyTheBest = 'Only the best!';
   static const topRated = 'Show me the most rated movies!';

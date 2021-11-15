@@ -14,6 +14,14 @@ class MovieDatasource implements IMovieDatasource {
     return 'https://api.themoviedb.org/3/movie/top_rated?api_key=8d61230b01928fe55a53a48a41dc839b&language=en-US&page=$page';
   }
 
+  String _urlMoviesDetailed({required int id}) {
+    return 'https://api.themoviedb.org/3/movie/$id?api_key=8d61230b01928fe55a53a48a41dc839b&language=en-USh';
+  }
+
+  String _urlMoviesVideo({required int id}) {
+    return 'https://api.themoviedb.org/3/movie/$id/videos?api_key=8d61230b01928fe55a53a48a41dc839b&language=en-US';
+  }
+
   @override
   Future<ApiResult> getMoviesMostPopular({required int page}) async {
     return await iApiRequestManager.getAsync(
@@ -28,6 +36,24 @@ class MovieDatasource implements IMovieDatasource {
     return await iApiRequestManager.getAsync(
       _urlMoviesByRate(
         page: page,
+      ),
+    );
+  }
+
+  @override
+  Future<ApiResult> getMovieDetails({required int id}) async {
+    return await iApiRequestManager.getAsync(
+      _urlMoviesDetailed(
+        id: id,
+      ),
+    );
+  }
+
+  @override
+  Future<ApiResult> getMovieVideo({required int id}) async {
+    return await iApiRequestManager.getAsync(
+      _urlMoviesVideo(
+        id: id,
       ),
     );
   }
