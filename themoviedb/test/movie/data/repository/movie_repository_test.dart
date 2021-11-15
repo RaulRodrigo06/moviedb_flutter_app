@@ -8,11 +8,12 @@ import 'package:themoviedb/core/response/states/success.dart';
 import 'package:themoviedb/movies/data/datasource/i_movie_datasource.dart';
 import 'package:themoviedb/movies/data/model/genres_model.dart';
 import 'package:themoviedb/movies/data/model/movie_detail_model.dart';
-import 'package:themoviedb/movies/data/model/movie_list_model.dart';
-import 'package:themoviedb/movies/data/model/movie_model.dart';
+import 'package:themoviedb/movies/data/model/movie_video_list_model.dart';
 import 'package:themoviedb/movies/data/model/movie_video_model.dart';
 import 'package:themoviedb/movies/data/repository/movie_repository.dart';
+import 'package:themoviedb/movies/domain/entities/movie_entity.dart';
 import 'package:themoviedb/movies/domain/entities/movie_list_entity.dart';
+import 'package:themoviedb/movies/domain/entities/movie_video_list_entity.dart';
 
 import '../../../mocks/list_movie_mock.dart';
 import '../../../mocks/movie_detail_mock.dart';
@@ -27,7 +28,7 @@ void main() {
     datasource = MockStarWarsDatasource();
     repository = MovieRepository(datasource: datasource);
   });
-  const tMovieModel = MovieModel(
+  const tMovieModel = MovieEntity(
     id: 631843,
     originalTitle: 'Old',
     posterPath: '/vclShucpUmPhdAOmKgf3B3Z4POD.jpg',
@@ -35,7 +36,7 @@ void main() {
     releaseDate: '2021-07-21',
     voteAverage: 6.7,
   );
-  const tMovieListModel = MovieListModel(
+  const tMovieListModel = MovieListEntity(
     movieList: [tMovieModel],
     pageNumber: 4,
     totalPages: 500,
@@ -46,6 +47,9 @@ void main() {
     type: 'Clip',
     title: 'VENOM: LET THERE BE CARNAGE - Burj Khalifa Takeover',
   );
+
+  const tMovieListVideo =
+      MovieVideoListModel(listMovieVideoList: [tMovieVideo]);
   const tGenres = [
     GenresModel(
       id: 878,
@@ -106,9 +110,9 @@ void main() {
       )),
     );
 
-    final result = await repository.getPopularMovieList(page: 1);
-    expect(result, const Right(tMovieVideo));
-    verify(() => datasource.getMoviesMostPopular(page: 1)).called(1);
+    final result = await repository.getMovieVideo(id: 1);
+    expect(result, const Right<Erro, MovieVideoListEntity>(tMovieListVideo));
+    verify(() => datasource.getMovieVideo(id: 1)).called(1);
   });
 
   test('Return a list of MovieDetailEntity', () async {
@@ -127,9 +131,9 @@ void main() {
       )),
     );
 
-    final result = await repository.getPopularMovieList(page: 1);
+    final result = await repository.getMovieDetails(id: 1);
     expect(result, const Right(tMovieDetail));
-    verify(() => datasource.getMoviesMostPopular(page: 1)).called(1);
+    verify(() => datasource.getMovieDetails(id: 1)).called(1);
   });
 
   test('Throw exception', () async {
