@@ -2,6 +2,8 @@ import 'package:bloc_test/bloc_test.dart';
 import 'package:dartz/dartz.dart';
 import 'package:flutter_test/flutter_test.dart';
 import 'package:mocktail/mocktail.dart';
+import 'package:themoviedb/core/app_strings.dart';
+import 'package:themoviedb/core/response/states/erro.dart';
 import 'package:themoviedb/movies/data/model/genres_model.dart';
 import 'package:themoviedb/movies/domain/entities/movie_detail_entity.dart';
 import 'package:themoviedb/movies/domain/entities/movie_video_list_entity.dart';
@@ -97,6 +99,65 @@ void main() {
             originalTitle: tMovieDetailEntity.originalTitle,
           ),
         ),
+      ],
+    );
+
+    blocTest<MovieDetailCubit, MovieDetailState>(
+      'Should emit LoadedState without video link',
+      build: () {
+        when(() => mockGeMovieDetailUsecase.call(id: 1)).thenAnswer(
+          (_) async => const Right(
+            tMovieDetailEntity,
+          ),
+        );
+
+        when(() => mockGetMovieVideoUsecase.call(id: 1)).thenAnswer(
+          (_) async => Left(
+            Erro(
+              statusMessage: Strings.errorRequestMovieVideo,
+            ),
+          ),
+        );
+        return cubit;
+      },
+      act: (cubit) => cubit.getMovieDetail(id: 1),
+      expect: () => <dynamic>[
+        MovieDetailLoading(),
+        MovieDetailLoaded(
+          movieDetailEntity: MovieDetailEntity(
+            tagline: tMovieDetailEntity.tagline,
+            overview: tMovieDetailEntity.overview,
+            genresEntity: tMovieDetailEntity.genresEntity,
+            movieVideo: Strings.errorRequestMovieVideo,
+            posterPath: tMovieDetailEntity.posterPath,
+            originalTitle: tMovieDetailEntity.originalTitle,
+          ),
+        ),
+      ],
+    );
+
+    blocTest<MovieDetailCubit, MovieDetailState>(
+      'Should emit ErrorState',
+      build: () {
+        when(() => mockGeMovieDetailUsecase.call(id: 1)).thenAnswer(
+          (_) async => Left(
+            Erro(statusMessage: Strings.standardErrorMessage),
+          ),
+        );
+
+        when(() => mockGetMovieVideoUsecase.call(id: 1)).thenAnswer(
+          (_) async => Left(
+            Erro(
+              statusMessage: Strings.errorRequestMovieVideo,
+            ),
+          ),
+        );
+        return cubit;
+      },
+      act: (cubit) => cubit.getMovieDetail(id: 1),
+      expect: () => <dynamic>[
+        MovieDetailLoading(),
+        const MovieDetailError(message: Strings.standardErrorMessage),
       ],
     );
   });
